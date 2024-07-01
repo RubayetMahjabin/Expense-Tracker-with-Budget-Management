@@ -1,5 +1,8 @@
 # Expense-Tracker-with-Budget-Management
 
+
+#In the website to log an expense, please set a budget first of each category.
+
 #Installation
 
     pip install django
@@ -9,9 +12,11 @@
     pip install crispy-bootstrap4
     pip install matplotlib
 
+#Run
 
-#Run migrations:
+
     python manage.py makemigrations
     python manage.py migrate
     python manage.py runserver
+
 
