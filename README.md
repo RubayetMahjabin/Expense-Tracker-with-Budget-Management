@@ -1,7 +1,16 @@
 # Expense-Tracker-with-Budget-Management
 
+        pip install -r requirements.txt
+
+
 
 #In the website to log an expense, please set a budget first of each category.
+
+#Credentials
+Username:dell
+password:123456
+
+#You can also register and use your own credentials to login
 
 #Installation
 
