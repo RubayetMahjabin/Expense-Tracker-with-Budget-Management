@@ -1,0 +1,5 @@
+django
+django-crispy-forms
+Pillow
+crispy-bootstrap4
+matplotlib
