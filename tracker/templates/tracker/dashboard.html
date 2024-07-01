@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Dashboard</h2>
+
+  <h3>Log Expense</h3>
+  <form method="post" action="{% url 'log_expense' %}">
+    {% csrf_token %}
+    {{ expense_form.as_p }}
+    <button type="submit">Log Expense</button>
+  </form>
+
+  <h3>Set Budget</h3>
+  <form method="post" action="{% url 'set_budget' %}">
+    {% csrf_token %}
+    {{ budget_form.as_p }}
+    <button type="submit">Set Budget</button>
+  </form>
+
+  <h3>Budgets</h3>
+  <ul>
+    {% for budget in budgets %}
+      <li>{{ budget.category.name }}: {{ budget.amount }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Expenses</h3>
+  <ul>
+    {% for expense in expenses %}
+      <li>{{ expense.category.name }}: {{ expense.amount }} on {{ expense.date }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

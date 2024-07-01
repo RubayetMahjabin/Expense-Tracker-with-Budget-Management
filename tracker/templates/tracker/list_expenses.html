@@ -1,0 +1,53 @@
+{% extends 'users/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>List Expenses</h1>
+            <form method="post">
+                {% csrf_token %}
+                <label for="category">Category:</label>
+                <select name="category">
+                    <option value="">All</option>
+                    {% for category in categories %}
+                        <option value="{{ category.name }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="start_date">Start Date:</label>
+                <input type="date" name="start_date">
+                <label for="end_date">End Date:</label>
+                <input type="date" name="end_date">
+                <button type="submit">Filter</button>
+            </form>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd;">
+                <thead>
+                    <tr style="background-color: #f2f2f2;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">Description</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Category</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Amount</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Date</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Budget</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expense in expenses %}
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">{{ expense.description }}</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">{{ expense.category.name }}</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">{{ expense.amount }}</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">{{ expense.date }}</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                {% if expense.category.budget %}
+                                    {{ expense.category.budget.amount }}
+                                {% else %}
+                                    Not set
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,36 @@
+<!-- tracker/templates/tracker/summary_report.html -->
+
+{% extends 'users/base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Summary Report</h1>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="padding: 10px; border: 1px solid #ddd;">Category</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Budget</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Total Expenses</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Remaining Budget</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in report %}
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ entry.category }}</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ entry.budget }}</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ entry.total_expenses }}</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ entry.remaining_budget }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <h2>Graphical Representation</h2>
+        {% if plot_data %}
+            <img src="data:image/png;base64,{{ plot_data }}" alt="Summary Graph">
+        {% else %}
+            <p>No data available to generate graph.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
